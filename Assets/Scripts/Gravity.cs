@@ -51,7 +51,7 @@ public class Gravity : MonoBehaviour
         if(collided==false)
         {
         collided=true;
-        Controller.bindings.Enqueue(new Gravity[]{this,other.gameObject.GetComponent<Gravity>()});
+        Bindings.bindings.Enqueue(new Gravity[]{this,other.gameObject.GetComponent<Gravity>()});
         }
     }
 

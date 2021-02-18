@@ -6,8 +6,8 @@ public class BallPool : MonoBehaviour
 {
     public static int ballNumber=0;
     public GameObject ballPrefab;
-    Queue<GameObject> balls;
     public int amount;
+    Queue<GameObject> balls;
     void Start()
     {
         balls=new Queue<GameObject>();
