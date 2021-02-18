@@ -7,6 +7,7 @@ public class Counter : MonoBehaviour
 {
     public Text text;
     void Update() {
-        text.text="Number of spheres:"+BallPool.ballNumber;
+        text.text="Number of spheres: "+BallPool.ballNumber+"\nBasic spheres created: "+Controller.amount;
+
     }
 }

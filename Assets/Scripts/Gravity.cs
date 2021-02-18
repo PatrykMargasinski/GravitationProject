@@ -7,29 +7,18 @@ public class Gravity : MonoBehaviour
     const float G = 666.4f;
     public static List<Gravity> gravities=new List<Gravity>();
     public Rigidbody rb;
+    public SphereCollider col;
+    public bool gravitationEnabled=true;
     public bool collided=false;
-
     public bool collisionOff=false;
     public float collisionOffTime=0f;
 
     void FixedUpdate()
     {
-        if(collisionOff)
-        if(collisionOffTime>0f)
-        {
-            collisionOffTime-=Time.deltaTime;
-        }
-        else
-        {
-            rb.mass=1;
-            gameObject.GetComponent<SphereCollider>().enabled=true;
-            collisionOff=false;
-        }
-
-
+        gravitationEnabled=rb.detectCollisions;
         foreach(Gravity gravity in gravities)
         {
-            if (gravity != this)
+            if (gravity != this && gravitationEnabled==true)
             {
                 Attract(gravity);
             }
@@ -48,7 +37,7 @@ public class Gravity : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(collided==false)
+        if(collided==false && gravitationEnabled==true)
         {
         collided=true;
         Bindings.bindings.Enqueue(new Gravity[]{this,other.gameObject.GetComponent<Gravity>()});
@@ -62,7 +51,7 @@ public class Gravity : MonoBehaviour
         Vector3 direction = rb.position - rbToAttract.position;
         float distance = direction.sqrMagnitude;
 
-        if (distance < gameObject.GetComponent<SphereCollider>().radius*2)
+        if (distance < col.radius*2)
         {
             return;
         }

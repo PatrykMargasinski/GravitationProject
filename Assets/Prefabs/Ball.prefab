@@ -126,4 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2346724896836952541}
+  col: {fileID: 5487441500199261045}
   collided: 0
+  collisionOff: 0
+  collisionOffTime: 0

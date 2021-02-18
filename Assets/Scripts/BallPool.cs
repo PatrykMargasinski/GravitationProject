@@ -19,21 +19,25 @@ public class BallPool : MonoBehaviour
         }
     }
 
-    public GameObject GetBall(Vector3 position, float mass)
+    public GameObject GetBall(Vector3 position, float mass, float scale)
     {
         var ball=balls.Dequeue();
         ball.SetActive(true);
         ball.transform.position=position;
-        ball.transform.localScale=Vector3.one*Mathf.Sqrt(mass);
+        ball.transform.localScale=Vector3.one*scale;//Vector3.one*Mathf.Sqrt(mass);
         ball.GetComponent<Rigidbody>().mass=mass;
         ballNumber++;
         return ball;
     }
+    public GameObject GetBall(Vector3 position, float mass)
+    {
+        return GetBall(position, mass, Mathf.Sqrt(mass));
+    }
 
     public void ReturnBall(GameObject ball)
     {
-        Rigidbody rigidbody=ball.GetComponent<Rigidbody>();
         ballNumber--;
+        Rigidbody rigidbody=ball.GetComponent<Rigidbody>();
         rigidbody.mass=1f;
         rigidbody.velocity=Vector3.zero;
         rigidbody.angularVelocity=Vector3.zero;
