@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallPool : MonoBehaviour
+//Pool przechujący wszystkie kule. Przy uruchomieniu aplikacji tworzone jest domyślnie 250 kul, które będą aktywowane i dezaktywowane
+public class BallPool : MonoBehaviour 
 {
     public static int ballNumber=0;
     public GameObject ballPrefab;
@@ -19,12 +20,13 @@ public class BallPool : MonoBehaviour
         }
     }
 
+    //metoda zwracająca jedną z kul z Poola
     public GameObject GetBall(Vector3 position, float mass, float scale)
     {
         var ball=balls.Dequeue();
         ball.SetActive(true);
         ball.transform.position=position;
-        ball.transform.localScale=Vector3.one*scale;//Vector3.one*Mathf.Sqrt(mass);
+        ball.transform.localScale=Vector3.one*scale;
         ball.GetComponent<Rigidbody>().mass=mass;
         ballNumber++;
         return ball;
@@ -34,6 +36,7 @@ public class BallPool : MonoBehaviour
         return GetBall(position, mass, Mathf.Sqrt(mass));
     }
 
+    //metoda zwracająca jedną z kul do Poola
     public void ReturnBall(GameObject ball)
     {
         ballNumber--;

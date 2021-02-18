@@ -106,7 +106,7 @@ Rigidbody:
   m_GameObject: {fileID: 5471148633648822518}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2346724896836952541}
   col: {fileID: 5487441500199261045}
+  gravitationEnabled: 1
   collided: 0
   collisionOff: 0
   collisionOffTime: 0
